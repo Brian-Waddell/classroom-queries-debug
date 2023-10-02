@@ -11,4 +11,5 @@
 #
 class Course < ApplicationRecord
   has_many :enrollments, dependent: :destroy
+  belongs_to :department
 end
