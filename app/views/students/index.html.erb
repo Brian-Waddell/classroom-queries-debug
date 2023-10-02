@@ -26,7 +26,7 @@
       Last name
     </label>
 
-    <input type="text" id="last_name_box" name="query_last_name">
+    <input type= "text" id="last_name_box" name="query_last_name">
   </div>
 
   <button>
@@ -58,7 +58,7 @@
     </th>
   </tr>
 
-  <% @students.eac do |student| %>
+  <% @students.each do |student| %>
     <tr>
       <td>
         <%= student.id %>

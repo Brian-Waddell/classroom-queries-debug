@@ -46,4 +46,5 @@ class DepartmentsController < ApplicationController
 
     redirect_to("/departments", { :notice => "Department deleted successfully."} )
   end
+  
 end
