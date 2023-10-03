@@ -51,6 +51,6 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  post("/insert_enrollment", { :controller => "enrollments", :action => "create" })
+  post("/insert_enrollment", { :controller => "enrollment", :action => "create" })
 
 end
