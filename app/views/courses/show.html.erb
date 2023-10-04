@@ -22,7 +22,7 @@
       Title
     </label>
 
-    <input type="text" id="title_box" name="query_title">
+    <input type="text" id="title_box" name="query_title" value = "<%= @course.title%>">
   </div>
 
   <div>
@@ -43,6 +43,7 @@
         <% if a_department.id == @course.department_id %>
           <option value="<%= a_department.id %>" selected>
             <%= a_department.name %>
+            
           </option>
         <% else %>
           <option value="<%= a_department.id %>">
@@ -53,7 +54,7 @@
     </select>
   </div>
 
-  <button>
+  <button type = "submit">
     Update course
   </button>
 </form>
@@ -80,14 +81,14 @@
   </dt>
   <dd>
     <% department = Department.where({ :id => @course.department_id }).at(0) %>
-    <a href="/departments/<%= department.id %>"><%= department.name %></a>
+    <a href="/departments/<%= department.id %>"><%= department.name %></a> 
   </dd>
 
   <dt>
     Number of enrolled students
   </dt>
   <dd>
-    <%= Enrollment.where({ :course_id => @course.id }) %>
+    <%= Enrollment.where({ :course_id => @course.id }).count %>
   </dd>
 </dl>
 
@@ -95,12 +96,13 @@
 
 <h2>Roster</h2>
 <ul>
-  <% Enrollment.where({ :course_id => @course.id }).each do |enrollment| %>
-    <% student = Student.where({ :id => enrollment.student_id }).at(0) %>
+  <% Enrollment.where({:course_id => @course.id }).each do |enrolled| %>
+    
     <li>
-      <a href="/students/<%= student.id %>">
-        <%= student.first_name %> <%= student.last_name %>
-      </a>
+     <a href="/students/<%= enrolled.student_id %>">
+      <% student = Student.where({ id: enrolled.student_id}).at(0) %>
+      <%= student.first_name %> <%= student.last_name %>
+      </a> 
     </li>
   <% end %>
 </ul>
